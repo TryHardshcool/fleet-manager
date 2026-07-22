@@ -1,0 +1,106 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+        <!-- ===================== PALETTE ===================== -->
+        <SolidColorBrush x:Key="AccentBrush"        Color="#00C9A7"/>
+        <SolidColorBrush x:Key="AccentSoftBrush"    Color="#1E3A34"/>
+        <SolidColorBrush x:Key="SidebarBrush"       Color="#141722"/>
+        <SolidColorBrush x:Key="CardBrush"          Color="#1D1F2C"/>
+        <SolidColorBrush x:Key="CardHoverBrush"     Color="#242739"/>
+        <SolidColorBrush x:Key="PageBackgroundBrush" Color="#090B12"/>
+        <SolidColorBrush x:Key="TextPrimaryBrush"   Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TextSecondaryBrush" Color="#A6B3C8"/>
+        <SolidColorBrush x:Key="DangerBrush"        Color="#EF5C5C"/>
+        <SolidColorBrush x:Key="WarningBrush"       Color="#F5A623"/>
+
+        <!-- ===================== SIDEBAR MENU BUTTON ===================== -->
+        <Style x:Key="MenuButton" TargetType="Button">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="12">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Background" Value="#1B1F2C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Active menu button (Dashboard) -->
+        <Style x:Key="MenuButtonActive" TargetType="Button" BasedOn="{StaticResource MenuButton}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{StaticResource AccentBrush}" CornerRadius="12">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16,0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ===================== ICON ACTION BUTTON (voir / modifier / supprimer) ===================== -->
+        <Style x:Key="IconActionButton" TargetType="Button">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="#262A3B"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bg" Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ===================== STAT CARD ===================== -->
+        <Style x:Key="StatCard" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource CardBrush}"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Margin" Value="8"/>
+        </Style>
+
+        <!-- ===================== VEHICLE CARD ===================== -->
+        <Style x:Key="VehicleCard" TargetType="Border">
+            <Setter Property="Background" Value="{StaticResource CardBrush}"/>
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Width" Value="270"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <!-- Status chip -->
+        <Style x:Key="StatusChip" TargetType="Border">
+            <Setter Property="CornerRadius" Value="12"/>
+            <Setter Property="Padding" Value="12,5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+
+</ResourceDictionary>
