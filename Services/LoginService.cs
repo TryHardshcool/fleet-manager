@@ -43,7 +43,6 @@ namespace GestionVehicule.Services
 
             try
             {
-                // POST vide : pas de body attendu par Logout.php
                 var response = await _client.PostAsync("Auth/Logout.php", null);
                 var responseBody = await response.Content.ReadAsStringAsync();
 

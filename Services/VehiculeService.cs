@@ -44,8 +44,6 @@ namespace GestionVehicule.Services
                 Log.Warning("Échec de récupération du véhicule {Id} : {Body}", id, body);
                 return null;
             }
-
-            // Le PHP fait un fetch() simple : si aucun resultat, il retourne "false" -> JSON "false"
             if (body.Trim() == "false")
             {
                 Log.Warning("Aucun véhicule trouvé pour l'id {Id}", id);
@@ -71,8 +69,6 @@ namespace GestionVehicule.Services
         }
 
         // ===================== AJOUT (POST) =====================
-        // Le PHP renvoie uniquement {"message": "...", "id": 123} : pas d'objet vehicule complet.
-        // On reconstruit le Vehicule cote client a partir du dto + de l'id recu.
         public async Task<(bool Succes, string? Erreur, Vehicule? Vehicule)> AjouterAsync(VehiculeCreateDto dto)
         {
             var json = JsonConvert.SerializeObject(dto);
@@ -81,10 +77,6 @@ namespace GestionVehicule.Services
 
             var response = await _client.PostAsync(Endpoint, content);
             var body = await response.Content.ReadAsStringAsync();
-
-            // TEMPORAIRE - à retirer une fois le bug trouvé
-            Log.Information("Réponse brute de l'API : {Body}", body);
-            System.Diagnostics.Debug.WriteLine(body);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -120,7 +112,6 @@ namespace GestionVehicule.Services
             var json = JsonConvert.SerializeObject(dto);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            // PutAsync envoie une vraie methode HTTP PUT, comme attendu par $_SERVER['REQUEST_METHOD']
             var response = await _client.PutAsync($"{Endpoint}?id={id}", content);
             var body = await response.Content.ReadAsStringAsync();
 
@@ -139,7 +130,6 @@ namespace GestionVehicule.Services
         // ===================== SUPPRESSION (DELETE reel) =====================
         public async Task<(bool Succes, string? Erreur)> SupprimerAsync(int id)
         {
-            // DeleteAsync envoie une vraie methode HTTP DELETE
             var response = await _client.DeleteAsync($"{Endpoint}?id={id}");
             var body = await response.Content.ReadAsStringAsync();
 
